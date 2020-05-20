@@ -24,6 +24,7 @@ public class UF {
             if (id[i] == pid)
                 id[i] = qid;
         }
+        count--;
     }
 
     public int count() {
@@ -36,10 +37,12 @@ public class UF {
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if (!uf.connected(p, q)) {
-                uf.union(p, q);
-                StdOut.print(p + " " + q);
-            }
+            if (uf.connected(p, q))
+                continue;
+            uf.union(p, q);
+            StdOut.print(p + " " + q);
+
         }
+        StdOut.println(uf.count() + " components");
     }
 }

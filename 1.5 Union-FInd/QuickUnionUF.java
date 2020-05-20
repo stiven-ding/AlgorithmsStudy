@@ -5,6 +5,7 @@ public class QuickUnionUF {
     public QuickUnionUF(int N) {
         count = N;
         id = new int[N];
+        sz = new int[N];
         for (int i = 0; i < N; i++) {
             id[i] = i;
             sz[i] = 1;
@@ -12,10 +13,9 @@ public class QuickUnionUF {
     }
 
     public int root(int i) {
-        while (i != id[i])
-        {
-            id[i] = id[id[i]];  // path compression
-            i = id[i]; 
+        while (i != id[i]) {
+            id[i] = id[id[i]]; // path compression
+            i = id[i];
         }
         return i;
     }
@@ -29,13 +29,15 @@ public class QuickUnionUF {
         int j = root(q);
         if (i == j)
             return;
-        if (sz[i] < sz[j]) {   // weighted tree
+        if (sz[i] < sz[j]) { // weighted tree
             id[i] = j;
             sz[j] += sz[i];
         } else {
             id[j] = i;
             sz[i] += sz[j];
         }
+        count--;
+
     }
 
     public int count() {
@@ -44,14 +46,16 @@ public class QuickUnionUF {
 
     public static void main(String[] args) {
         int N = StdIn.readInt();
-        UF uf = new UF(N);
+        QuickUnionUF uf = new QuickUnionUF(N);
         while (!StdIn.isEmpty()) {
             int p = StdIn.readInt();
             int q = StdIn.readInt();
-            if (!uf.connected(p, q)) {
-                uf.union(p, q);
-                StdOut.print(p + " " + q);
-            }
+            if (uf.connected(p, q))
+                continue;
+            uf.union(p, q);
+            StdOut.print(p + " " + q);
+
         }
+        StdOut.println(uf.count() + " components");
     }
 }
