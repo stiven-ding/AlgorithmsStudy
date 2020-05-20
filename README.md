@@ -1,1 +1,1 @@
-"# AlgorithmsStudy" 
+# AlgorithmsStudy
