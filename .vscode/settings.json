@@ -1,7 +1,8 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "1.3/stdlib.jar"
+        "1.3/stdlib.jar",
+        "stdlib.jar"
     ],
     "files.exclude": {
         "**/.classpath": true,

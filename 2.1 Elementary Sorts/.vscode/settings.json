@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\stive\\Onedrive - City University of Hong Kong\\MOOC\\Algorithms (Coursera)\\stdlib.jar"
+    ]
+}
