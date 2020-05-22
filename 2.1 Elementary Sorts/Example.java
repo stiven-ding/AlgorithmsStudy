@@ -19,16 +19,19 @@ public class Example {
         StdOut.println();
     }
 
-    public static void showGraph(Comparable[] a, int slash, int pointer) {
+    public static void showGraph(Comparable[] a, int slash, int pointer, long delay) {
         StdDraw.clear();
         int N = a.length;
         for (int i = 0; i < N; i++) {
             StdDraw.setPenColor(i == pointer ? Color.RED : (i > slash ? Color.lightGray : Color.darkGray));
-            double rw = 0.5 / (N+1);
-            double x = 1.0 * i / N + rw ;
+            double rw = 0.5 / (N + 1);
+            double x = 1.0 * i / N + rw;
             double y = Double.parseDouble(a[i].toString()) / 2.0;
             StdDraw.filledRectangle(x, y, rw, y);
         }
+        try {
+            Thread.sleep(delay);
+        } catch (Exception e) {}
     }
 
     public static boolean isSorted(Comparable[] a) {
@@ -49,30 +52,17 @@ public class Example {
     public static void main(String[] args) {
         // String[] a = In.readStrings();
         // sort(a);
-        setShow(false);
-        StdOut.print("Input the size of array: ");
+        setShow(true);
+        
+        // Sample input: "Insertion 10"
+        String alg = StdIn.readString();
         int N = StdIn.readInt();
-        
+
         Double[] a = new Double[N];
-        Double[] b = new Double[N];
-
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0; i < a.length; i++) 
             a[i] = StdRandom.uniform();
-            b[i] = a [i];
-        }
-        
-        try {
-            Stopwatch timer = new Stopwatch();
 
-            Selection.sort(a);
-            StdOut.println("Selection takes " + timer.elapsedTime());
-            
-            timer = new Stopwatch();
-            Insertion.sort(a);
-            StdOut.println("Insertion takes " + timer.elapsedTime());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        SortCompare.time(alg, a);
     }
 
 }
