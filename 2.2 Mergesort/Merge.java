@@ -1,4 +1,4 @@
-// p.273
+// p. 273
 // Mergesort uses at most N lg N compares and 6 N lg N array accesses to sort any array of size N.
 
 public class Merge {
@@ -27,6 +27,7 @@ public class Merge {
     }
 
     public static void sort(Comparable[] a, int lo, int hi) {
+        // using insertion sort for tiny arrays (of 10 to 15) instead may save running time for ~10%
         if (hi <= lo) return;
         int mid = lo + (hi-lo/2); 
         sort(a, lo, mid);
